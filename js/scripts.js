@@ -51,4 +51,22 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    var loadNews = async () => {
+        // get top headlines for us from news api
+        var url = 'https://newsapi.org/v2/top-headlines?' +
+              'country=us&' +
+              'apiKey=e6fe3816fad44b92866e510c0e2435aa';
+        var req = new Request(url);
+        let headlines = await fetch(req)
+            .then( response => response.json())
+            .then( data => console.log(data) )
+            
+        document.querySelector('#NewsHeadlines').innerHTML = headlines.articles
+
+    }
+
+    loadNews();
+
+
+
 });
